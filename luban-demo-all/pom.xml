@@ -16,11 +16,6 @@
     <artifactId>luban-demo-all</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.tarena.luban.demo</groupId>
-            <artifactId>luban-demo-protocol</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
