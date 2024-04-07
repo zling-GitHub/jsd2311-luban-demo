@@ -1,0 +1,7 @@
+server:
+  port: 9001 #order 9001 cart 9002 stock 9003
+spring:
+  application:
+    name: luban-demo-order #拆分的项目应用名称 也不同
+  profiles:
+    active: local
