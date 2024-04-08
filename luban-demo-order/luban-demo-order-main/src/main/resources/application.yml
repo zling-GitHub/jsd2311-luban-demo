@@ -7,15 +7,21 @@ spring:
         #提供nacos注册中心地址
         server-addr: localhost:8848
         #实例的ip地址 多个网卡必定要配置 不配置
-        ip: 127.0.0.1
+        #ip: 10.8.8.8
         #配置实例端口好 默认就是server.port
-        port: ${server.port}
+        #port: ${server.port}
         #配置当前实例启动注册的命名空间的id值
-        namespace: dev
+        #namespace: dev
         #配置分组的值 默认 DEFAULT_GROUP
-        group: 0.0.1-SNAPSHOT
+        #group: 0.0.1-SNAPSHOT
         #指定当前实例的服务名称
-        service: ${spring.application.name}
+        #service: ${spring.application.name}
+        #临时实例 永久实例 true临时 false永久 默认值true
+        #ephemeral: true
+        # 心跳间隔时间 单位秒 包含下探永久实例,也包含临时实例主动上报
+        #heart-beat-interval: 5
+        # 心跳超时时间,只针对临时实例有效
+        #heart-beat-timeout: 20
   application:
     # 微服务中 表示的是 服务名称 nacos客户端会使用这个值
     name: luban-demo-order #拆分的项目应用名称 也不同
