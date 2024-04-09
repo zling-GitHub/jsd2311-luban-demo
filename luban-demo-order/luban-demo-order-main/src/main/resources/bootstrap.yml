@@ -1,0 +1,11 @@
+#多环境时,必须在bootstrap配置的
+spring:
+  profiles:
+    active: local
+# 假设我们现在有2个环境一个dev 一个是local本地 每个空间必须指定一个名字
+---
+# 第一个---下 表示 local配置空间
+spring:
+  config:
+    activate:
+      on-profile: local

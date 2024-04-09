@@ -25,5 +25,5 @@ spring:
   application:
     # 微服务中 表示的是 服务名称 nacos客户端会使用这个值
     name: luban-demo-order #拆分的项目应用名称 也不同
-  profiles:
-    active: local
+  #profiles:
+    #active: local
