@@ -12,6 +12,16 @@ spring:
       config:
         # 配置中心地址 localhost:8848
         server-addr: localhost:8848
+        # 默认通用配置的后缀 xml json yaml properties html text
+        # file-extension: yml
+        # 指定文件所在的命名空间,根据当前实例所属环境配置
+        namespace:
+        # 配置一次性读取文件 datasource.yml
+        shared-configs:
+        # 每个shared-configs元素 都表示远程一个配置文件
+          - data-id: datasource.yml # 文件名称
+            group: DEFAULT_GROUP # 文件所属分组 默认就是DEFAULT_GROUP
+            refresh: false # 是否允许文件刷新推送 false远程变动 本地不动 true 远程变动会推送给本地
   config:
     activate:
       on-profile: local
