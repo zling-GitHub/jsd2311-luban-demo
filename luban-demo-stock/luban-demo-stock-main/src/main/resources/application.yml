@@ -2,6 +2,6 @@ server:
   port: 9003
 spring:
   cloud:
-      nacos:
+    nacos:
       discovery:
           server-addr: localhost:8848
