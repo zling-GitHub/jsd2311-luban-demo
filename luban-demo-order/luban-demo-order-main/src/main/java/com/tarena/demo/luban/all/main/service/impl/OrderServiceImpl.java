@@ -29,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
         CartDeleteParam cartDeleteParam=new CartDeleteParam();
         cartDeleteParam.setUserId(param.getUserId());
         cartDeleteParam.setProductCode(param.getProductCode());
+        //TODO socket通信 cart 开一个serverSocket 等着有客户端发送socket
         //cartService.deleteCart(cartDeleteParam);
     }
 }
