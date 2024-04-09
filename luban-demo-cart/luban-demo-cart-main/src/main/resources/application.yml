@@ -5,7 +5,3 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-  application:
-    name: luban-demo-cart
-  profiles:
-    active: local

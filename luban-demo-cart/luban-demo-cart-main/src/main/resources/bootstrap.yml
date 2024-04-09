@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: local
+---
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        shared-configs:
+          - data-id: datasource.yml
+            group: DEFAULT_GROUP
+            refresh: false
+          - data-id: mybatis.yml
+            group: DEFAULT_GROUP
+            refresh: false
+  config:
+    activate:
+      on-profile: local
+  application:
+    name: luban-demo-cart
+
+
