@@ -6,6 +6,17 @@ spring:
 ---
 # 第一个---下 表示 local配置空间
 spring:
+  # 交给naocs客户端连接配置中心属性
+  cloud:
+    nacos:
+      config:
+        # 配置中心地址 localhost:8848
+        server-addr: localhost:8848
   config:
     activate:
       on-profile: local
+  # spring应用名称 nacos客户端连接配置中心必用的属性
+  application:
+    name: luban-demo-order
+
+
