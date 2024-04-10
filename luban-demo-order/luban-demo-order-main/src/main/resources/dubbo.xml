@@ -26,7 +26,12 @@
     <dubbo:reference id="cartApi"
                      interface="com.tarena.demo.luban.cart.api.CartApi"
                      registry="nacos"
-                     check="true"
+                     check="false"
+    />
+    <dubbo:reference id="stockApi"
+                     interface="com.tarena.luban.demo.stock.api.StockApi"
+                     registry="nacos"
+                     check="false"
     />
 
 

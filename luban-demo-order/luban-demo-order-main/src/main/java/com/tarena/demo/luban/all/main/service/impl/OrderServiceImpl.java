@@ -7,6 +7,7 @@ import com.tarena.demo.luban.protocol.cart.param.CartDeleteParam;
 import com.tarena.demo.luban.protocol.order.dos.OrderDO;
 import com.tarena.demo.luban.protocol.order.param.OrderAddParam;
 import com.tarena.demo.luban.protocol.stock.param.StockReduceCountParam;
+import com.tarena.luban.demo.stock.api.StockApi;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,15 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
     @Autowired
     private CartApi cartApi;
+    @Autowired
+    private StockApi stockApi;
     @Override public void addOrder(OrderAddParam param) {
-        // 减库存
+        //减库存
         StockReduceCountParam stockReduceCountParam=new StockReduceCountParam();
         stockReduceCountParam.setReduceCount(param.getCount());
         stockReduceCountParam.setProductCode(param.getProductCode());
         stockReduceCountParam.setOrderSn(param.getOrderSn());
+        stockApi.reduceCommodityCount(stockReduceCountParam);
         //stockService.reduceCommodityCount(stockReduceCountParam);
         //增订单
         OrderDO orderDO=new OrderDO();
@@ -34,5 +38,6 @@ public class OrderServiceImpl implements OrderService {
         cartDeleteParam.setProductCode(param.getProductCode());
         //调用删除购物车的接口
         cartApi.deleteUserCart(cartDeleteParam);
+        System.out.println("cartApi:"+cartApi.getClass().getName());
     }
 }
