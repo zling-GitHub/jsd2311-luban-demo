@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://dubbo.apache.org/schema/dubbo
+    http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    <!--希望spring读取这个xml 加载这里的标签 创建DubboBootstrap应用-->
+    <!--1.提供应用名称-->
+    <dubbo:application name="${spring.application.name}">
+        <!--关闭dubbo QOS 不关闭 启动会有端口冲突-->
+        <dubbo:parameter key="qos.enable" value="false"/>
+    </dubbo:application>
+    <!--2.提供注册中心地址-->
+    <dubbo:registry id="nacos" address="nacos://localhost:8848"/>
+    <!--3.如果一个进程单纯的只有consumer的角色,不需要配置 协议 但是
+    在微服务当中不能保证 业务永远不会被别的服务调用-->
+    <dubbo:protocol name="dubbo" port="-1"/>
+    <!--4.调用的抓取信息配置 最终相当于一个bean标签 在容器里创建一个接口类的代理bean对象-->
+    <!--id属性 是当前标签创建的代理bean对象的id值-->
+    <!--interface属性 是dubbo进程 发现的服务名称接口类-->
+    <!--registry 使用哪个注册中心发现这个服务-->
+    <!--check 当前dubbo启动时,是否检查存在这个服务 true 启动时会检查 对方服务是否注册 没注册就报错
+    false 当前dubbo启动不会检查provider服务 直到调用代理时,才会检查-->
+    <dubbo:reference id="cartApi"
+                     interface="com.tarena.demo.luban.cart.api.CartApi"
+                     registry="nacos"
+                     check="true"
+    />
+
+
+</beans>
