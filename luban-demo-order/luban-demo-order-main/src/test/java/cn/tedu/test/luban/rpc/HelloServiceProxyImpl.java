@@ -8,7 +8,7 @@ import java.net.Socket;
 /**
  * 代理类
  */
-public class HelloServiceClientImpl implements HelloService{
+public class HelloServiceProxyImpl implements HelloService{
     @Override
     public String sayHi(String name) {
         String result =null;

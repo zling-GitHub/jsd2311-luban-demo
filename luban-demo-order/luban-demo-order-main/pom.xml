@@ -55,5 +55,10 @@
             <artifactId>luban-demo-cart-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.7.8</version>
+        </dependency>
     </dependencies>
 </project>

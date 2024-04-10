@@ -1,11 +1,10 @@
 package cn.tedu.test.luban.rpc;
 
 import java.io.*;
-import java.net.Socket;
 
 public class RpcClient {
     public static void main(String[] args) throws IOException {
-        HelloService helloService=new HelloServiceClientImpl();
+        HelloService helloService=new HelloServiceProxyImpl();
         String result = helloService.sayHi("王翠花");
         System.out.println(result);
     }
