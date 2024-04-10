@@ -1,8 +1,13 @@
 package cn.tedu.test.luban.rpc.dubbo;
 
+import cn.tedu.test.luban.rpc.CartApi;
 import org.apache.dubbo.config.ProtocolConfig;
+import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
+import org.apache.dubbo.config.ServiceConfig;
 import org.apache.dubbo.config.bootstrap.DubboBootstrap;
+
+import java.util.ServiceConfigurationError;
 
 /**
  * 作用是启动一个dubbo应用进程
@@ -26,7 +31,14 @@ public class Provider {
         protocolConfig.setName("dubbo");
         //可以指定具体的端口 20000 需要考虑端口冲突问题 -1 dubbo启动时,会自动从20880 向后寻找可用端口
         protocolConfig.setPort(-1);
-        //4. 提供可以访问的实现CartApiImpl 还要在注册中心告诉别人你访问的这个接口和方法 TODO
-        //5. 启动dubbo进程
+        bootstrap.protocol(protocolConfig);
+        //4. 提供可以访问的实现CartApiImpl 还要在注册中心告诉别人你访问的这个接口和方法
+        ServiceConfig serviceConfig=new ServiceConfig();
+        serviceConfig.setInterface(CartApi.class);
+        serviceConfig.setRef(new CartApiImpl());
+        bootstrap.service(serviceConfig);
+        //5. 启动dubbo进程 一直运行 一直监听端口 等待客户端consumer访问 每一个dubbo应用和spring应用一样,都需要一个名字
+        bootstrap.application("cart-dubbo");
+        bootstrap.start().await();
     }
 }
