@@ -15,15 +15,5 @@ import java.net.ServerSocket;
 public class CartMain {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(CartMain.class, args);
-        //context spring上下文 拿到购物车业务对象
-        /*CartService service = context.getBean(CartService.class);
-        try{
-            ServerSocket server=new ServerSocket(20000);
-            ObjectInputStream ois=new ObjectInputStream(server.accept().getInputStream())
-            CartDeleteParam param=(CartDeleteParam)ois.readObject();
-            service.deleteCart(param);
-        }catch (Exception e){
-        }*/
-
     }
 }
