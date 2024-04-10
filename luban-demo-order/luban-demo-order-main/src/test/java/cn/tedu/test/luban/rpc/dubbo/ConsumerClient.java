@@ -1,6 +1,6 @@
 package cn.tedu.test.luban.rpc.dubbo;
 
-import cn.tedu.test.luban.rpc.CartApi;
+import com.tarena.demo.luban.cart.api.CartApi;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.bootstrap.DubboBootstrap;

@@ -1,6 +1,6 @@
 package cn.tedu.test.luban.rpc.dubbo;
 
-import cn.tedu.test.luban.rpc.CartApi;
+import com.tarena.demo.luban.cart.api.CartApi;
 import com.tarena.demo.luban.protocol.cart.param.CartDeleteParam;
 
 public class CartApiImpl implements CartApi {
