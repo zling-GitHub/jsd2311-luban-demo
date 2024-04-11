@@ -13,13 +13,18 @@
         <dubbo:parameter key="qos.enable" value="false"/>
     </dubbo:application>
     <!--2.提供注册中心地址-->
-    <dubbo:registry id="nacos" address="nacos://localhost:8848"/>
+    <dubbo:registry id="nacos" address="localhost:8848" protocol="nacos"/>
     <!--3.提供通信协议 监听端口号-->
     <dubbo:protocol name="dubbo" port="-1"/>
     <!--4.配置提供的接口功能 配置接口的具体实现-->
     <dubbo:service interface="com.tarena.demo.luban.cart.api.CartApi"
                    ref="cartApiImpl"
                    registry="nacos"
+                   loadbalance="random"
+                   weight="10"
+                   retries="5"
+                   timeout="500"
+                   async="true"
     />
 
 </beans>

@@ -11,6 +11,7 @@
         <module>luban-demo-order</module>
         <module>luban-demo-cart</module>
         <module>luban-demo-stock</module>
+        <module>luban-spring-boot-starter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
