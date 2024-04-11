@@ -6,7 +6,9 @@ import com.example.config.MyConfiguration02;
 import org.springframework.context.annotation.*;
 
 @Configuration
-@ComponentScan(basePackages = {"cn.tedu.test.luban.demo.bean"})
+@ComponentScan(basePackages = {
+        "cn.tedu.test.luban.demo.bean",
+        "cn.tedu.test.luban.demo.condition.config"})
 //@Import(value={MyConfiguration02.class})
 @Import(value={MySelector.class})
 @PropertySource("jdbc.properties")
