@@ -33,6 +33,4 @@
                      registry="nacos"
                      check="false"
     />
-
-
 </beans>
