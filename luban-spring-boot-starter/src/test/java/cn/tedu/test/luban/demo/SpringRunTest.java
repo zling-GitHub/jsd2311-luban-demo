@@ -3,7 +3,6 @@ package cn.tedu.test.luban.demo;
 import cn.tedu.test.luban.demo.bean.Bean01;
 import cn.tedu.test.luban.demo.config.MyConfiguration01;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringRunTest {
