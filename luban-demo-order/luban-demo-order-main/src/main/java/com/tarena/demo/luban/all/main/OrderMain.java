@@ -2,14 +2,22 @@ package com.tarena.demo.luban.all.main;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan
 @MapperScan("com.tarena.demo.luban.all.main.mapper")
 @ImportResource("dubbo.xml")
 public class OrderMain {
     public static void main(String[] args) {
-        SpringApplication.run(OrderMain.class,args);
+        SpringApplication application=new SpringApplication(OrderMain.class);
+        //springboot中spring容器上下文
+        ConfigurableApplicationContext context = application.run(args);
     }
 }
