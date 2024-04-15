@@ -1,0 +1,50 @@
+server:
+  port: 10000
+spring:
+  # 配置网关转发给9002所需属性
+  cloud:
+    gateway:
+      #全局跨域配置
+      globalcors:
+        cors-configurations:
+          "[/**]":
+            #当前针对/**跨域的具体规则配置
+            #允许携带的请求头
+            allowed-headers: "*"
+            #- "Accept"
+            #- "Host"
+            #允许跨域的方法
+            allowed-methods: "*"
+            #- "GET"
+            #- "POST"
+            #匹配请求原地址origin值
+            allowed-origin-patterns: "*"
+            #- "**.luban.com"
+            #是否跨域的时候允许携带认证凭证 token jwt Cookie头 Authorization头
+            allow-credentials: true
+            #跨域时效 单位秒
+            max-age: 3600
+      #路由转发
+      routes:
+        # 入门案例 路由配置 逻辑 进入网关的请求 /hello 网关给我转给localhost:9002
+        - id: demo01 # 表示多个路由中的id唯一值 自定义配置
+          #          uri: http://localhost:9002 # 网关 向后调用的目的地
+          # lb作为协议名字, 就是loadbalance 缩写 告诉代理, 找loadbalacer计算
+          uri: lb://luban-demo-cart # 网关 向后调用的目的地
+          # localhost:10000/a localhost:10000/b localhost:10000/abc localhost:10000/hello
+          predicates: #判断语言 -- 断言
+            - Path=/cart/** # 路径匹配
+          #            - Host=localhost:10000 # 域名匹配
+          filters: #过滤器 -- 过滤请求头，请求参数，请求体
+            - StripPrefix=1 # 去掉请求路径前缀
+        - id: demo02 # 表示多个路由中的id唯一值 自定义配置
+          #          uri: http://localhost:9003 # 网关 向后调用的目的地
+          uri: lb://luban-demo-stock # 网关 向后调用的目的地
+          # localhost:10000/a localhost:10000/b localhost:10000/abc localhost:10000/hello
+          predicates: #判断语言 -- 断言
+            - Path=/stock/** # 路径匹配
+          #            - Host=localhost:10000 # 域名匹配
+          filters: #过滤器 -- 过滤请求头，请求参数，请求体
+            - StripPrefix=1 # 去掉请求路径前缀
+  application:
+    name: luban-demo-gateway
