@@ -12,17 +12,20 @@ import java.util.List;
 public class SentinelDemo01Main {
     public static void main(String[] args) {
         SpringApplication.run(SentinelDemo01Main.class, args);
-        // 设置一个FlowRule，限制每秒钟最多10个请求，超过10个请求则触发熔断
-        List<FlowRule> rules = new ArrayList<>();
-        FlowRule rule = new FlowRule();
-        rule.setResource("sayHi");
-        //设置限流级别
-        rule.setGrade(1);
-        // 设置上限阈值
-        rule.setCount(10);
-        // 设置每秒钟的请求数
-        rules.add(rule);
-        // 加载规则
-        FlowRuleManager.loadRules(rules);
+        //main方法启动时就运行了
+        //1. 定义一个流控规则类型的数组
+        List<FlowRule> flowRules=new ArrayList<>();
+        //2. 创建一个流控规则 绑定和限制resource01
+        FlowRule flowRule=new FlowRule();
+        //3. 填补流控规则对象的3个必要属性
+        flowRule.setResource("sayHi");
+        //0=并发限流 1=qps限流
+        flowRule.setGrade(1);
+        //触发限流规则 限制的阈值
+        flowRule.setCount(1);
+        //4.添加到流控规则数组对象
+        flowRules.add(flowRule);
+        //5.最终要注册这个规则对象给sentinel使用
+        FlowRuleManager.loadRules(flowRules);
     }
 }
