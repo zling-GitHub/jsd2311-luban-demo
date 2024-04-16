@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
-@Component
+//@Component
 @Slf4j
 public class MyFilter02 implements GlobalFilter, Ordered {
 
