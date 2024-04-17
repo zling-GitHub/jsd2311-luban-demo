@@ -2,6 +2,7 @@ package com.tarena.demo.luban.all.main.controller;
 
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphU;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.tarena.demo.luban.all.main.service.OrderService;
 import com.tarena.demo.luban.commons.restful.JsonResult;
@@ -25,6 +26,7 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/add")
+    @SentinelResource(value = "addOrder", blockHandler = "sayHiError")
     @ApiOperation("新增订单的功能")
     public JsonResult addOrder(OrderAddParam orderAddParam) {
         Entry entry = null;
@@ -39,6 +41,10 @@ public class OrderController {
                 entry.exit();
         }
         return JsonResult.ok("新增订单完成!");
+    }
+
+    public String sayHiError(String name, BlockException e) {
+        return "sorry" + name + "被限流了" + e;
     }
 
 }

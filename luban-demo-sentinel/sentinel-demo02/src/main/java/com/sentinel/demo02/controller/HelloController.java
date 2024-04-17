@@ -1,9 +1,9 @@
-package com.sentinel.demo01.controller;
+package com.sentinel.demo02.controller;
 
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.sentinel.demo01.service.HelloService;
+import com.sentinel.demo02.service.HelloService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String sayHi(String name) {
+        log.info("lubandemo02 sayHi方法收到参数为：{}", name);
         Entry entry = null;
         String result = null;
         try {
@@ -30,6 +31,7 @@ public class HelloController {
             if (entry != null)
                 entry.exit();
         }
+        log.info("lubandemo02 sayHi方法收到参数为：{}", name);
         return result;
     }
 

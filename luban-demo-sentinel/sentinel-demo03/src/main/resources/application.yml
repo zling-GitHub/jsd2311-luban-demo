@@ -1,0 +1,27 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    sentinel:
+      datasource:
+        # datasource是个map对象 每一个key-value都表示你想要配置的一个数据源
+        "nacos-flow-datasource":
+          nacos:
+            # nacos 配置中心地址
+            server-addr: localhost:8848
+            # sentinel 1.7之后添加了nacos的认证 提供nacos的用户名密码
+            username: nacos
+            password: nacos
+            # 配置文件flowRules.json 所在的命名空间
+            # namespace:
+            # 所在的分组
+            # group-id:
+            # 读取的配置文件名称
+            data-type: json
+            #5. 底层加载的规则类型
+            #6. 文件名称
+            data-id: flowRules.json
+            # 当前数据源读取的底层类型 FlowRule DegradeRule SystemRule等 对应的是固定名字
+            rule-type: flow
+            #"nacos-datasource-degrade":
+            # naocs:

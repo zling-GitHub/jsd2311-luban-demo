@@ -1,0 +1,12 @@
+[
+  {
+    "resource": "sayHi",
+    "grade": 1,
+    "count": 1
+  },
+  {
+    "resource": "sayHi",
+    "grade": 0,
+    "count": 1
+  }
+]

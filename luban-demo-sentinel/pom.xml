@@ -16,6 +16,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>sentinel-demo01</module>
+        <module>sentinel-demo02</module>
+        <module>sentinel-demo03</module>
     </modules>
 
     <properties>
@@ -32,6 +34,10 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
     </dependencies>
 </project>
