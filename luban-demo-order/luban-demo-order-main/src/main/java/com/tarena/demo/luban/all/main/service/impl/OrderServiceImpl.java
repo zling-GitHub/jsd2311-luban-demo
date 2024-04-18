@@ -2,6 +2,7 @@ package com.tarena.demo.luban.all.main.service.impl;
 
 import com.tarena.demo.luban.all.main.mapper.OrderMapper;
 import com.tarena.demo.luban.all.main.service.OrderService;
+import com.tarena.demo.luban.all.main.service.RpcCartDeleteService;
 import com.tarena.demo.luban.cart.api.CartApi;
 import com.tarena.demo.luban.protocol.cart.param.CartDeleteParam;
 import com.tarena.demo.luban.protocol.order.dos.OrderDO;
@@ -20,6 +21,9 @@ public class OrderServiceImpl implements OrderService {
     private CartApi cartApi;
     @Autowired
     private StockApi stockApi;
+    @Autowired
+    private RpcCartDeleteService rpcCartDeleteService;
+
     @Override public void addOrder(OrderAddParam param) {
         //减库存
         StockReduceCountParam stockReduceCountParam=new StockReduceCountParam();
@@ -37,7 +41,8 @@ public class OrderServiceImpl implements OrderService {
         cartDeleteParam.setUserId(param.getUserId());
         cartDeleteParam.setProductCode(param.getProductCode());
         //调用删除购物车的接口
-        cartApi.deleteUserCart(cartDeleteParam);
-        System.out.println("cartApi:"+cartApi.getClass().getName());
+        rpcCartDeleteService.cartDelete(cartDeleteParam);
+//        cartApi.deleteUserCart(cartDeleteParam);
+        System.out.println("cartApi:"+rpcCartDeleteService.getClass().getName());
     }
 }

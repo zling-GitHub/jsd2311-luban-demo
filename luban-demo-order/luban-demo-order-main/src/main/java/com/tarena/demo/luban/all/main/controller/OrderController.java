@@ -4,6 +4,8 @@ import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.tarena.demo.luban.all.main.handler.MyBlockHandler;
+import com.tarena.demo.luban.all.main.handler.MyFallbackHandler;
 import com.tarena.demo.luban.all.main.service.OrderService;
 import com.tarena.demo.luban.commons.restful.JsonResult;
 import com.tarena.demo.luban.protocol.order.param.OrderAddParam;
@@ -26,25 +28,11 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping("/add")
-    @SentinelResource(value = "addOrder", blockHandler = "sayHiError")
+    @SentinelResource(value = "addOrder", blockHandler = "addOrderBlock", blockHandlerClass = MyBlockHandler.class, fallback = "addOrderError", fallbackClass = MyFallbackHandler.class)
     @ApiOperation("新增订单的功能")
     public JsonResult addOrder(OrderAddParam orderAddParam) {
-        Entry entry = null;
-        try {
-            entry = SphU.entry("addOrder");
-            orderService.addOrder(orderAddParam);
-        } catch (BlockException e) {
-            log.error("sentinel限制访问了:", e);
-            return JsonResult.ok("sorry");
-        } finally {
-            if (entry != null)
-                entry.exit();
-        }
+        orderService.addOrder(orderAddParam);
         return JsonResult.ok("新增订单完成!");
-    }
-
-    public String sayHiError(String name, BlockException e) {
-        return "sorry" + name + "被限流了" + e;
     }
 
 }

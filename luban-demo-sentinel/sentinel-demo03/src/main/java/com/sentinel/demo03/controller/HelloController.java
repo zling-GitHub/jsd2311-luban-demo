@@ -22,7 +22,6 @@ public class HelloController {
         String result = null;
         result = helloService.sayHi(name);
         log.info("sayHi: {}", result);
-        int a = 1 / 0;
         return result;
     }
 

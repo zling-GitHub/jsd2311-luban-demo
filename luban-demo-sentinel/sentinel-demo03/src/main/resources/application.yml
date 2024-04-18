@@ -4,6 +4,16 @@ spring:
   cloud:
     sentinel:
       datasource:
+        # 熔断数据源nacos-degrade-datasource
+        "nacos-degrade-datasource":
+          nacos:
+            # nacos 配置中心地址
+            server-addr: localhost:8848
+            username: nacos
+            password: nacos
+            data-type: json
+            data-id: degradeRules.json
+            rule-type: degrade
         # datasource是个map对象 每一个key-value都表示你想要配置的一个数据源
         "nacos-flow-datasource":
           nacos:

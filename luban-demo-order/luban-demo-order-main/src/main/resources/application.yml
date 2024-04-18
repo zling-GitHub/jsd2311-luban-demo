@@ -7,6 +7,16 @@ spring:
   cloud:
     sentinel:
       datasource:
+        "nacos-degrade-datasource":
+          nacos:
+            # nacos 配置中心地址
+            server-addr: localhost:8848
+            username: nacos
+            password: nacos
+            data-type: json
+            data-id: order-degrade-rules.json
+            rule-type: degrade
+            # naocs:
         # datasource是个map对象 每一个key-value都表示你想要配置的一个数据源
         "nacos-flow-datasource":
           nacos:
@@ -23,7 +33,7 @@ spring:
             data-type: json
             #5. 底层加载的规则类型
             #6. 文件名称
-            data-id: flowRules.json
+            data-id: order-flow-rules.json
             # 当前数据源读取的底层类型 FlowRule DegradeRule SystemRule等 对应的是固定名字
             rule-type: flow
             #"nacos-datasource-degrade":
