@@ -1,11 +1,9 @@
 package com.rocket;
 
-import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.common.message.Message;
-import org.apache.rocketmq.common.message.MessageQueue;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
@@ -29,7 +27,8 @@ public class MyProducer {
         // Thread.sleep(1000);
         //2. 开启连接之后, 整理封装一个发送的消息对象
         Message message = new Message();
-        message.setTopic("topic01");
+        message.setTopic("topic02");
+        message.setTags("tag01");
         // message包装数据内容
         String msg = "第一条消息";
         byte[] bytes = msg.getBytes(StandardCharsets.UTF_8);
