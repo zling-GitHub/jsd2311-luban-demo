@@ -1,0 +1,8 @@
+POST http://localhost:8080/send1
+Content-Type: application/json
+{
+  "username": "admin",
+  "password": "123456"
+}
+
+###
