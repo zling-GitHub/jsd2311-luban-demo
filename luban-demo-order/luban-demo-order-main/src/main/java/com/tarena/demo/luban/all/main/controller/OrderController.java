@@ -40,6 +40,8 @@ public class OrderController {
 
             @Override
             public void onException(Throwable e) {
+                // TODO 发送失败的消息，需要进行告警处理
+//                MessageAlarm.sendAlarm("订单消息发送失败！", e.getMessage());
                 log.error("发送消息失败！", e);
             }
         });
